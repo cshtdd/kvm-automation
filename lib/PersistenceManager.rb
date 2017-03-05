@@ -1,0 +1,3 @@
+class PersistenceManager
+
+end
