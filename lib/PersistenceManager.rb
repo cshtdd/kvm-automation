@@ -10,6 +10,10 @@ class PersistenceManager
         File.join(@storage_root, 'config/')
     end
 
+    def hdd_filename
+        File.join(@storage_root, "#{@vm_name}.qcow2")
+    end
+
     def save_cloud_config(file_contents)
         cloud_config_folder = File.join(config_folder, 'openstack/latest/')
         config_filename = File.join(cloud_config_folder, 'user_data')
@@ -20,8 +24,6 @@ class PersistenceManager
     end
 
     def create_vm_hdd(base_image)
-        hdd_filename = File.join(@storage_root, "#{@vm_name}.qcow2")
         sh "qemu-img create -f qcow2 -b #{base_image} #{hdd_filename}"
-        hdd_filename
     end
 end

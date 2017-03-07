@@ -21,8 +21,12 @@ describe 'PersistenceManager' do
     end
 
     it 'retrieves the config folder path' do
-        expect_config_folder_path = File.join(@tmp_root.path, "#{@vm_name}/config/")
+        expected_config_folder_path = File.join(@tmp_root.path, "#{@vm_name}/config/")
 
-        expect(@pm.config_folder).to eq(expect_config_folder_path)
+        expect(@pm.config_folder).to eq(expected_config_folder_path)
+    end
+
+    it 'determines where to store the hdd' do
+        expected_config_folder_path = File.join(@tmp_root.path, "#{@vm_name}/#{@vm_name}.qcow2")
     end
 end
