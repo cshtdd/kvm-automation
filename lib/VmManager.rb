@@ -35,5 +35,19 @@ class VmManager
     def autostart_vm
         sh "virsh autostart #{@vm_name}"
     end
+
+    def create_vm(mac_address="54:36:E2:84:5A:C0", bridge_adapter="br0", ram_mb=1024, cpu_count=1)
+        sh %{
+            virt-install --connect qemu:///system \\
+                --import --name #{@vm_name} \\
+                --ram #{ram_mb} \\
+                --vcpus #{cpu_count} \\
+                --os-type=linux \\
+                --os-variant=virtio26 \\
+                --disk path=#{hdd_filename},format=qcow2,bus=virtio \\
+                --filesystem #{config_folder},config-2,type=mount,mode=squash \\
+                --network=bridge=#{bridge_adapter},mac=#{mac_address} \\
+                --vnc --noautoconsole
+        }
     end
 end
