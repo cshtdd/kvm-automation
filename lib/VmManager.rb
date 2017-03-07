@@ -1,4 +1,4 @@
-require 'fileutils'
+require "fileutils"
 
 class VmManager
     def initialize(vm_name, storage_root)
@@ -7,7 +7,7 @@ class VmManager
     end
 
     def config_folder
-        File.join(@storage_root, 'config/')
+        File.join(@storage_root, "config/")
     end
 
     def hdd_filename
@@ -15,8 +15,8 @@ class VmManager
     end
 
     def save_cloud_config(file_contents)
-        cloud_config_folder = File.join(config_folder, 'openstack/latest/')
-        config_filename = File.join(cloud_config_folder, 'user_data')
+        cloud_config_folder = File.join(config_folder, "openstack/latest/")
+        config_filename = File.join(cloud_config_folder, "user_data")
 
         FileUtils.mkdir_p(cloud_config_folder)
 

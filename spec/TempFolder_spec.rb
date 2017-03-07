@@ -1,12 +1,12 @@
-require 'TempFolder'
-require 'fileutils'
+require "TempFolder"
+require "fileutils"
 
-describe 'PersistenceManager' do
+describe "PersistenceManager" do
     def cleanup(temp_dir)
         FileUtils.rm_rf(temp_dir.path) if File.directory?(temp_dir.path)
     end
 
-    it 'creates a new directory' do
+    it "creates a new directory" do
         d = TempFolder.new()
 
         begin
@@ -16,7 +16,7 @@ describe 'PersistenceManager' do
         end
     end
 
-    it 'destroys the directory' do
+    it "destroys the directory" do
         d = TempFolder.new()
 
         begin
@@ -27,7 +27,7 @@ describe 'PersistenceManager' do
         end
     end
 
-    it 'creates a different directory every time' do
+    it "creates a different directory every time" do
         d1 = TempFolder.new()
         d2 = TempFolder.new()
 

@@ -1,8 +1,8 @@
-require 'ConfigBuilder'
+require "ConfigBuilder"
 
-describe 'ConfigBuilder' do
-    it 'builds the cloud-config.yaml content' do
-        actual = ConfigBuilder.generate_cloud_config('ssh-rsa 123ABC', 'vm1')
+describe "ConfigBuilder" do
+    it "builds the cloud-config.yaml content" do
+        actual = ConfigBuilder.generate_cloud_config("ssh-rsa 123ABC", "vm1")
 
         expect(actual).to eq(%{
 hostname: "vm1"
