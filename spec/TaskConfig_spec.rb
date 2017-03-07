@@ -1,8 +1,8 @@
-require "ArgsReader"
+require "TaskConfig"
 
-describe "ArgsReader" do
+describe "TaskConfig" do
     it "returns default values when nothing is specified" do
-        r = ArgsReader.new()
+        r = TaskConfig.new()
 
         expect(r.storage_folder).to eq(File.expand_path("~/vms"))
         expect(r.public_key_filename).to eq(File.expand_path("~/.ssh/id_rsa.pub"))

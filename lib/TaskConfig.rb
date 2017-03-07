@@ -1,4 +1,4 @@
-class ArgsReader
+class TaskConfig
     def initialize(input=ARGV)
         @input_arr = input
     end
