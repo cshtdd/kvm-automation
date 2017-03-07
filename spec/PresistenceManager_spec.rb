@@ -1,11 +1,11 @@
 require 'TempFolder'
-require 'PersistenceManager'
+require 'VmManager'
 
-describe 'PersistenceManager' do
+describe 'VmManager' do
     before do
         @tmp_root = TempFolder.new
         @vm_name = "tmp_vm_#{rand(100000)}"
-        @pm = PersistenceManager.new(@vm_name, @tmp_root.path)
+        @m = VmManager.new(@vm_name, @tmp_root.path)
     end
 
     after do
@@ -13,7 +13,7 @@ describe 'PersistenceManager' do
     end
 
     it 'generates the cloud_config in the correct location' do
-        @pm.save_cloud_config('config contents')
+        @m.save_cloud_config('config contents')
 
         expected_file_path = File.join(@tmp_root.path, "#{@vm_name}/config/openstack/latest/user_data")
 
@@ -23,10 +23,12 @@ describe 'PersistenceManager' do
     it 'retrieves the config folder path' do
         expected_config_folder_path = File.join(@tmp_root.path, "#{@vm_name}/config/")
 
-        expect(@pm.config_folder).to eq(expected_config_folder_path)
+        expect(@m.config_folder).to eq(expected_config_folder_path)
     end
 
     it 'determines where to store the hdd' do
-        expected_config_folder_path = File.join(@tmp_root.path, "#{@vm_name}/#{@vm_name}.qcow2")
+        expected_hdd_filename = File.join(@tmp_root.path, "#{@vm_name}/#{@vm_name}.qcow2")
+
+        expect(@m.hdd_filename).to eq(expected_hdd_filename)
     end
 end

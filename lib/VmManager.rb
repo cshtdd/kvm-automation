@@ -1,6 +1,6 @@
 require 'fileutils'
 
-class PersistenceManager
+class VmManager
     def initialize(vm_name, storage_root)
         @vm_name = vm_name
         @storage_root = File.join(storage_root, "#{@vm_name}/")
