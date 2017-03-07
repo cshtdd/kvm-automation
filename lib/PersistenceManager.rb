@@ -17,4 +17,10 @@ class PersistenceManager
 
         File.write(config_filename, file_contents)
     end
+
+    def create_vm_hdd(base_image, vm_name)
+        hdd_filename = File.join(@storage_root, "#{vm_name}.qcow2")
+        sh "qemu-img create -f qcow2 -b #{base_image} #{hdd_filename}"
+        hdd_filename
+    end
 end

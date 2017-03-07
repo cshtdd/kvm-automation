@@ -6,6 +6,7 @@ Automate the creation of CoreOs vms on KVM
 
 - ruby  
 - git  
+- qemu-img  
 
 ## Dev  
 
