@@ -36,7 +36,7 @@ class VmManager
         sh "virsh autostart #{@vm_name}"
     end
 
-    def create_vm(mac_address="54:36:E2:84:5A:C0", bridge_adapter="br0", ram_mb=1024, cpu_count=1)
+    def create_vm(mac_address, bridge_adapter, ram_mb, cpu_count)
         sh %{
             virt-install --connect qemu:///system \\
                 --import --name #{@vm_name} \\
