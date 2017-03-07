@@ -1,17 +1,27 @@
+require 'TempFolder'
 require 'PersistenceManager'
-require 'fileutils'
 
 describe 'PersistenceManager' do
     before do
-        @temp_storage_root = File.join(FileUtils.pwd(), 'tmp_test')
-        FileUtils.mkdir(@temp_storage_root) unless File.directory?(@temp_storage_root)
+        @tmp_root = TempFolder.new
+        @pm = PersistenceManager.new(@tmp_root.path)
     end
 
     after do
-        FileUtils.rm_rf(@temp_storage_root)
+        @tmp_root.destroy
     end
 
     it 'generates the cloud_config in the correct location' do
-        PersistenceManager.new()
+        @pm.save_cloud_config('config contents')
+
+        expected_file_path = File.join(@tmp_root.path, 'config/openstack/latest/user_data')
+
+        expect(File.read(expected_file_path)).to eq('config contents')
+    end
+
+    it 'retrieves the config folder path' do
+        expect_config_folder_path = File.join(@tmp_root.path, 'config/')
+
+        expect(@pm.config_folder).to eq(expect_config_folder_path)
     end
 end
