@@ -26,4 +26,14 @@ class VmManager
     def create_vm_hdd(base_image)
         sh "qemu-img create -f qcow2 -b #{base_image} #{hdd_filename}"
     end
+
+    def destroy_existing_vm
+        `virsh destroy #{@vm_name}`
+        `virsh undefine #{@vm_name}`
+    end
+
+    def autostart_vm
+        sh "virsh autostart #{@vm_name}"
+    end
+    end
 end
