@@ -1,4 +1,5 @@
 require "fileutils"
+require "ConfigBuilder"
 
 class VmManager
     def initialize(vm_name, storage_root)
@@ -12,6 +13,12 @@ class VmManager
 
     def hdd_filename
         File.join(@storage_root, "#{@vm_name}.qcow2")
+    end
+
+    def generate_vm_config_drive(public_key_filename)
+        public_key = File.read public_key_filename
+
+        ConfigBuilder.generate_cloud_config(public_key, @vm_name)
     end
 
     def save_cloud_config(file_contents)
