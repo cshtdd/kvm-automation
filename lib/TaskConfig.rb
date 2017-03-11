@@ -1,18 +1,42 @@
 class TaskConfig
     def initialize(input=ARGV)
         @input_arr = input
+
+        @storage_folder = read_parameter_value "path"
+        @public_key_filename = read_parameter_value "key"
+        @base_image_filename = read_parameter_value "img"
+        @vm_name = read_parameter_value "name"
+        @mac_address = read_parameter_value "mac"
+        @bridge_adapter = read_parameter_value "br"
+        @ram_mb = read_parameter_value "ram"
+        @cpu_count = read_parameter_value "cpu"
+    end
+
+    def read_parameter_value(name)
+        result = nil
+
+        idx = @input_arr.index("--#{name}")
+        if idx != nil and idx >= 0 then
+            result = @input_arr[idx + 1]
+        end
+
+        result
     end
 
     def storage_folder
-        @storage_folder || File.expand_path("~/vms")
+        File.expand_path(@storage_folder || "~/vms")
     end
 
     def public_key_filename
-        @public_key_filename || File.expand_path("~/.ssh/id_rsa.pub")
+        File.expand_path(@public_key_filename || "~/.ssh/id_rsa.pub")
     end
 
     def base_image_filename
-        @base_image_filename || ""
+        if not @base_image_filename then
+            return ""
+        end
+
+        File.expand_path(@base_image_filename)
     end
 
     def vm_name
