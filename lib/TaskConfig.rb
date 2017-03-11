@@ -1,19 +1,29 @@
 class TaskConfig
+    attr_reader(
+        :storage_folder,
+        :public_key_filename,
+        :vm_name,
+        :mac_address,
+        :bridge_adapter,
+        :ram_mb,
+        :cpu_count
+    )
+
     def initialize(input=ARGV)
         @input_arr = input
 
-        @storage_folder = read_parameter_value "path"
-        @public_key_filename = read_parameter_value "key"
-        @base_image_filename = read_parameter_value "img"
-        @vm_name = read_parameter_value "name"
-        @mac_address = read_parameter_value "mac"
-        @bridge_adapter = read_parameter_value "br"
-        @ram_mb = read_parameter_value "ram"
-        @cpu_count = read_parameter_value "cpu"
+        @storage_folder = File.expand_path read_param("path", "~/vms")
+        @public_key_filename = File.expand_path read_param("key", "~/.ssh/id_rsa.pub")
+        @base_image_filename = read_param("img")
+        @vm_name = read_param("name", "vm01")
+        @mac_address = read_param("mac", "54:36:E2:84:5A:C0")
+        @bridge_adapter = read_param("br", "br0")
+        @ram_mb = read_param("ram", "1024")
+        @cpu_count = read_param("cpu", "1")
     end
 
-    def read_parameter_value(name)
-        result = nil
+    def read_param(name, default_value = nil)
+        result = default_value
 
         idx = @input_arr.index("--#{name}")
         if idx != nil and idx >= 0 then
@@ -23,39 +33,11 @@ class TaskConfig
         result
     end
 
-    def storage_folder
-        File.expand_path(@storage_folder || "~/vms")
-    end
-
-    def public_key_filename
-        File.expand_path(@public_key_filename || "~/.ssh/id_rsa.pub")
-    end
-
     def base_image_filename
         if not @base_image_filename then
             return ""
         end
 
         File.expand_path(@base_image_filename)
-    end
-
-    def vm_name
-        @vm_name || "vm01"
-    end
-
-    def mac_address
-        @mac_address || "54:36:E2:84:5A:C0"
-    end
-
-    def bridge_adapter
-        @bridge_adapter || "br0"
-    end
-
-    def ram_mb
-        @ram_mb || "1024"
-    end
-
-    def cpu_count
-        @cpu_count || "1"
     end
 end
