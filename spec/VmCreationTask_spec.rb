@@ -43,6 +43,19 @@ describe VmCreationTask, "run" do
         run_task
     end
 
+    it "creates the vm" do
+        @config = instance_double("TaskConfig",
+            :mac_address => "my mac",
+            :bridge_adapter => "br-test",
+            :ram_mb => "12345",
+            :cpu_count => "10"
+        ).as_null_object
+
+        expect(@vm_manager).to receive(:create_vm).with("my mac", "br-test", "12345", "10")
+
+        run_task
+    end
+
     it "autostarts the vm" do
         @config = instance_double("TaskConfig").as_null_object
 
