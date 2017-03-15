@@ -1,5 +1,5 @@
-require "TaskConfig"
-require "VmManager"
+require_relative "TaskConfig"
+require_relative "VmManager"
 
 class VmCreationTask
     def initialize(config: TaskConfig.new)

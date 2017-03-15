@@ -1,5 +1,5 @@
 require "fileutils"
-require "ConfigBuilder"
+require_relative "ConfigBuilder"
 
 class VmManager
     def initialize(vm_name, storage_root)
