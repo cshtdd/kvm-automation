@@ -5,13 +5,12 @@ require "TaskConfig"
 describe VmCreationTask, "run" do
     before do
         @vm_manager = instance_double("VmManager").as_null_object
-
-        @factory_stub = class_double("VmManagerFactory")
-            .as_stubbed_const(:transfer_nested_constants => true)
     end
 
     def run_task
-        expect(@factory_stub).to receive(:create).with(@config).and_return(@vm_manager)
+        factory_stub = class_double("VmManagerFactory")
+            .as_stubbed_const(:transfer_nested_constants => true)
+        expect(factory_stub).to receive(:create).with(@config).and_return(@vm_manager)
         VmCreationTask.new(config: @config).run
     end
 
