@@ -1,6 +1,6 @@
 require "ConfigBuilder"
 
-describe "ConfigBuilder" do
+describe ConfigBuilder, "generate_cloud_config" do
     it "builds the cloud-config.yaml content" do
         actual = ConfigBuilder.generate_cloud_config("ssh-rsa 123ABC", "vm1")
 

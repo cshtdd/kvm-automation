@@ -1,6 +1,6 @@
 require "TaskConfig"
 
-describe "TaskConfig" do
+describe TaskConfig do
     it "returns default values when nothing is specified" do
         r = TaskConfig.new()
 

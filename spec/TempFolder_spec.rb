@@ -1,7 +1,7 @@
 require "TempFolder"
 require "fileutils"
 
-describe "PersistenceManager" do
+describe TempFolder do
     def cleanup(temp_dir)
         FileUtils.rm_rf(temp_dir.path) if File.directory?(temp_dir.path)
     end

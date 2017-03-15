@@ -1,7 +1,7 @@
 require "TempFolder"
 require "VmManager"
 
-describe "VmManager" do
+describe VmManager do
     before do
         @tmp_root = TempFolder.new
         @vm_name = "tmp_vm_#{rand(100000)}"
