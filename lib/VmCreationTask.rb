@@ -9,5 +9,6 @@ class VmCreationTask
 
     def run
         @vm_manager.generate_vm_config_drive @config.public_key_filename
+        @vm_manager.create_vm_hdd @config.base_image_filename
     end
 end

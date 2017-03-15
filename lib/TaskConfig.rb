@@ -2,6 +2,7 @@ class TaskConfig
     attr_reader(
         :storage_folder,
         :public_key_filename,
+        :base_image_filename,
         :vm_name,
         :mac_address,
         :bridge_adapter,
@@ -14,7 +15,15 @@ class TaskConfig
 
         @storage_folder = File.expand_path read_param("path", "~/vms")
         @public_key_filename = File.expand_path read_param("key", "~/.ssh/id_rsa.pub")
-        @base_image_filename = read_param("img")
+
+        _base_image_filename = read_param("img")
+        if not _base_image_filename then
+            _base_image_filename = ""
+        else
+            _base_image_filename = File.expand_path(_base_image_filename)
+        end
+        @base_image_filename = _base_image_filename
+
         @vm_name = read_param("name", "vm01")
         @mac_address = read_param("mac", "54:36:E2:84:5A:C0")
         @bridge_adapter = read_param("br", "br0")
@@ -31,13 +40,5 @@ class TaskConfig
         end
 
         result
-    end
-
-    def base_image_filename
-        if not @base_image_filename then
-            return ""
-        end
-
-        File.expand_path(@base_image_filename)
     end
 end
