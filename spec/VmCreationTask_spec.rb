@@ -10,6 +10,15 @@ describe VmCreationTask, "run" do
             .as_stubbed_const(:transfer_nested_constants => true)
     end
 
+    it "removes existing vms with that name" do
+        @config = instance_double("TaskConfig").as_null_object
+        expect(@factory_stub).to receive(:create).with(@config).and_return(@vm_manager)
+
+        expect(@vm_manager).to receive(:destroy_existing_vm)
+
+        VmCreationTask.new(config: @config).run
+    end
+
     it "generates the vm config drive" do
         @config = instance_double("TaskConfig",
             :public_key_filename => "my key"
