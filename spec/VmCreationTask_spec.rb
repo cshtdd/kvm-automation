@@ -8,9 +8,18 @@ describe VmCreationTask, "run" do
     end
 
     def run_task
-        factory_stub = class_double("VmManagerFactory")
-            .as_stubbed_const(:transfer_nested_constants => true)
-        expect(factory_stub).to receive(:create).with(@config).and_return(@vm_manager)
+        expect(VmManager).to receive(:new).and_return(@vm_manager)
+        VmCreationTask.new(config: @config).run
+    end
+
+    it "creates a VmManager" do
+        @config = instance_double("TaskConfig",
+            :vm_name => "my vm",
+            :storage_folder => "/tmp/storage"
+        ).as_null_object
+
+        expect(VmManager).to receive(:new).with("my vm", "/tmp/storage").and_return(@vm_manager)
+
         VmCreationTask.new(config: @config).run
     end
 
