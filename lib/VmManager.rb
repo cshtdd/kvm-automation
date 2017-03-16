@@ -16,6 +16,10 @@ class VmManager
         File.join(@storage_root, "#{@vm_name}.qcow2")
     end
 
+    def hdd_container_folder
+        File.dirname hdd_filename
+    end
+
     def generate_vm_config_drive(public_key_filename)
         public_key = File.read public_key_filename
 
@@ -32,6 +36,10 @@ class VmManager
     end
 
     def create_vm_hdd(base_image)
+        if not File.directory?(hdd_container_folder) then
+            FileUtils.mkdir_p(hdd_container_folder)
+        end
+
         sh "qemu-img create -f qcow2 -b #{base_image} #{hdd_filename}"
     end
 
