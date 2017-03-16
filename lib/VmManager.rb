@@ -42,6 +42,7 @@ class VmManager
     def destroy_existing_vm
         `virsh destroy #{@vm_name}`
         `virsh undefine #{@vm_name}`
+        `rm -Rf #{@storage_root}`
     end
 
     def autostart_vm
