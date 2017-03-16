@@ -1,4 +1,5 @@
 require "fileutils"
+require_relative "ShellUtils"
 require_relative "ConfigBuilder"
 
 class VmManager
