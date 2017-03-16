@@ -5,3 +5,10 @@ def sh(command)
     raise "Error Running Command" unless $?.success?
     command_output
 end
+
+def mkdir_p(dir)
+    puts "mkdir -p #{dir}"
+    if not File.directory?(dir) then
+        FileUtils.mkdir_p dir
+    end
+end

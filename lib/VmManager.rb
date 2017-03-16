@@ -30,16 +30,12 @@ class VmManager
         cloud_config_folder = File.join(config_folder, "openstack/latest/")
         config_filename = File.join(cloud_config_folder, "user_data")
 
-        FileUtils.mkdir_p(cloud_config_folder)
-
+        mkdir_p cloud_config_folder
         File.write(config_filename, file_contents)
     end
 
     def create_vm_hdd(base_image)
-        if not File.directory?(hdd_container_folder) then
-            FileUtils.mkdir_p(hdd_container_folder)
-        end
-
+        mkdir_p hdd_container_folder
         sh "qemu-img create -f qcow2 -b #{base_image} #{hdd_filename}"
     end
 
