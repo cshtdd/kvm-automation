@@ -9,7 +9,7 @@ class VmManager
     end
 
     def config_folder
-        File.join(@storage_root, "config/")
+        @storage_root
     end
 
     def hdd_filename

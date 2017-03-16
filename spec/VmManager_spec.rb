@@ -15,13 +15,13 @@ describe VmManager do
     it "generates the cloud_config in the correct location" do
         @m.save_cloud_config("config contents")
 
-        expected_file_path = File.join(@tmp_root.path, "#{@vm_name}/config/openstack/latest/user_data")
+        expected_file_path = File.join(@tmp_root.path, "#{@vm_name}/openstack/latest/user_data")
 
         expect(File.read(expected_file_path)).to eq("config contents")
     end
 
     it "retrieves the config folder path" do
-        expected_config_folder_path = File.join(@tmp_root.path, "#{@vm_name}/config/")
+        expected_config_folder_path = File.join(@tmp_root.path, "#{@vm_name}/")
 
         expect(@m.config_folder).to eq(expected_config_folder_path)
     end
