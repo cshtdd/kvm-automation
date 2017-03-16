@@ -23,7 +23,9 @@ class VmManager
     def generate_vm_config_drive(public_key_filename)
         public_key = File.read public_key_filename
 
-        ConfigBuilder.generate_cloud_config(public_key, @vm_name)
+        cloud_config = ConfigBuilder.generate_cloud_config(public_key, @vm_name)
+
+        save_cloud_config cloud_config
     end
 
     def save_cloud_config(file_contents)
