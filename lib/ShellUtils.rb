@@ -7,7 +7,6 @@ def sh(command)
 end
 
 def mkdir_p(dir)
-    puts "mkdir -p #{dir}"
     if not File.directory?(dir) then
         FileUtils.mkdir_p dir
     end
