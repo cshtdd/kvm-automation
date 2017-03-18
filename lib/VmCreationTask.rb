@@ -22,4 +22,9 @@ class VmCreationTask
 
         vm_manager.autostart_vm
     end
+
+    def create_config
+        vm_manager = VmManager.new(@config.vm_name, @config.storage_folder)
+        vm_manager.generate_vm_config_drive @config.public_key_filename
+    end
 end
