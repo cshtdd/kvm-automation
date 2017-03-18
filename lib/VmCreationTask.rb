@@ -27,4 +27,9 @@ class VmCreationTask
         vm_manager = VmManager.new(@config.vm_name, @config.storage_folder)
         vm_manager.generate_vm_config_drive @config.public_key_filename
     end
+
+    def destroy_vm
+        vm_manager = VmManager.new(@config.vm_name, @config.storage_folder)
+        vm_manager.destroy_existing_vm
+    end
 end

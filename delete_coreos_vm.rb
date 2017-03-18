@@ -2,4 +2,4 @@
 
 require "./lib/VmCreationTask"
 
-VmCreationTask.new().destroy_existing_vm
+VmCreationTask.new().destroy_vm
