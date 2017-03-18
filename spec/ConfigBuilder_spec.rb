@@ -6,6 +6,7 @@ describe ConfigBuilder, "generate_cloud_config" do
 
         expect(actual).to eq(%{#cloud-config
 ssh-authorized-keys:
-    - ssh-rsa 123ABC})
+    - ssh-rsa 123ABC
+hostname: "vm1"})
     end
 end
