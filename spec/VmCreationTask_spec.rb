@@ -59,7 +59,7 @@ describe VmCreationTask, "run" do
             :cpu_count => "10"
         ).as_null_object
 
-        expect(@vm_manager).to receive(:create_vm).with("my mac", "br-test", "12345", "10")
+        expect(@vm_manager).to receive(:create_coreos_vm).with("my mac", "br-test", "12345", "10")
 
         run_task
     end
