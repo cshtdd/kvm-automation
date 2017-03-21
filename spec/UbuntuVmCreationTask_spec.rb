@@ -31,6 +31,14 @@ describe UbuntuVmCreationTask, "run" do
         run_task
     end
 
+    it "creates the hdd container folder" do
+        @config = instance_double("TaskConfig").as_null_object
+
+        expect(@vm_manager).to receive(:create_vm_hdd_container_folder)
+
+        run_task
+    end
+
     it "creates the vm" do
         @config = instance_double("TaskConfig",
             :os_variant => "minix",

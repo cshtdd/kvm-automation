@@ -10,6 +10,8 @@ class UbuntuVmCreationTask
         with do |vm_manager|
             vm_manager.destroy_existing_vm
 
+            vm_manager.create_vm_hdd_container_folder
+
             vm_manager.create_ubuntu_vm(
                 @config.os_variant,
                 @config.base_image_filename,

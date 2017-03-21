@@ -36,8 +36,12 @@ class VmManager
         File.write(config_filename, file_contents)
     end
 
-    def create_vm_hdd(base_image)
+    def create_vm_hdd_container_folder
         mkdir_p hdd_container_folder
+    end
+
+    def create_vm_hdd(base_image)
+        create_vm_hdd_container_folder()
         sh "qemu-img create -f qcow2 -b #{base_image} #{hdd_filename}"
     end
 
