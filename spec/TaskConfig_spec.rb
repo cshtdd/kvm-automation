@@ -12,6 +12,8 @@ describe TaskConfig do
         expect(r.bridge_adapter).to eq("br0")
         expect(r.ram_mb).to eq("1024")
         expect(r.cpu_count).to eq("1")
+        expect(r.os_variant).to eq("")
+        expect(r.vnc_port).to eq("5900")
     end
 
     it "parses the parameters" do
@@ -23,7 +25,9 @@ describe TaskConfig do
             "--mac", "00:00:00:01",
             "--br", "vbr1",
             "--ram", "2048",
-            "--cpu", "4"])
+            "--cpu", "4",
+            "--os-variant", "ubuntu16.04",
+            "--vnc-port", "5901"])
 
         expect(r.storage_folder).to eq("/var/vms/data")
         expect(r.public_key_filename).to eq("/etc/secrets/key.pub")
@@ -33,5 +37,7 @@ describe TaskConfig do
         expect(r.bridge_adapter).to eq("vbr1")
         expect(r.ram_mb).to eq("2048")
         expect(r.cpu_count).to eq("4")
+        expect(r.os_variant).to eq("ubuntu16.04")
+        expect(r.vnc_port).to eq("5901")
     end
 end
