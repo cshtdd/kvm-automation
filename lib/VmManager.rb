@@ -65,4 +65,22 @@ class VmManager
                 --vnc --noautoconsole
         }
     end
+
+    def create_ubuntu_vm(os_variant, base_image, mac_address, bridge_adapter, ram_mb, cpu_count, vnc_port)
+        sh %{
+            virt-install \\
+                --virt-type=kvm \\
+                --name #{@vm_name} \\
+                --ram #{ram_mb} \\
+                --vcpus=#{cpu_count} \\
+                --os-variant=#{os_variant} \\
+                --virt-type=kvm \\
+                --hvm \\
+                --cdrom=#{base_image} \\
+                --network=bridge=#{bridge_adapter},model=virtio \\
+                --mac="#{mac_address}" \\
+                --graphics vnc,listen=0.0.0.0,port=#{vnc_port} \\
+                --disk path=#{hdd_filename},size=10,bus=virtio,format=qcow2
+        }
+    end
 end
