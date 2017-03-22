@@ -72,7 +72,7 @@ class VmManager
 
     def create_ubuntu_vm(os_variant, base_image, mac_address, bridge_adapter, ram_mb, cpu_count, vnc_port)
         sh %{
-            virt-install \\
+            virt-install --connect qemu:///system \\
                 --virt-type=kvm \\
                 --name #{@vm_name} \\
                 --ram #{ram_mb} \\
