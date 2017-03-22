@@ -32,9 +32,7 @@ ruby vm_task.rb CoreOsVmCreationTask \
 ### Destroy a vm  
 
 ```bash
-ruby vm_task.rb VmDeletionTask \
-    --path ~/vms/ \
-    --name vm1
+ruby vm_task.rb VmDeletionTask --path ~/vms/ --name vm1
 ```
 
 ## Dev  
