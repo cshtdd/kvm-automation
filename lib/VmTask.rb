@@ -7,11 +7,16 @@ class VmTask
     end
 
     def run
-        fail NotImplementedError, "A canine class must be able to #bark!"
+        with do |vm_manager|
+            run_with vm_manager
+        end
     end
 
     def with
-        vm_manager = VmManager.new(@config.vm_name, @config.storage_folder)
-        yield vm_manager
+        yield VmManager.new(@config.vm_name, @config.storage_folder)
+    end
+
+    def run_with(vm_manager)
+        fail NotImplementedError, "A VmTask must implement run_with(VmManager)"
     end
 end
