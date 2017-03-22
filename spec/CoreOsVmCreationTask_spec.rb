@@ -1,15 +1,15 @@
-require "VmCreationTask"
+require "CoreOsVmCreationTask"
 require "VmManager"
 require "TaskConfig"
 
-describe VmCreationTask, "run" do
+describe CoreOsVmCreationTask, "run" do
     before do
         @vm_manager = instance_double("VmManager").as_null_object
     end
 
     def run_task
         expect(VmManager).to receive(:new).and_return(@vm_manager)
-        VmCreationTask.new(config: @config).run
+        CoreOsVmCreationTask.new(config: @config).run
     end
 
     it "creates a VmManager" do
@@ -20,7 +20,7 @@ describe VmCreationTask, "run" do
 
         expect(VmManager).to receive(:new).with("my vm", "/tmp/storage").and_return(@vm_manager)
 
-        VmCreationTask.new(config: @config).run
+        CoreOsVmCreationTask.new(config: @config).run
     end
 
     it "removes existing vms with that name" do

@@ -1,6 +1,6 @@
 require_relative "VmTask"
 
-class VmCreationTask < VmTask
+class CoreOsVmCreationTask < VmTask
     def run_with(vm_manager)
         vm_manager.destroy_existing_vm
         vm_manager.generate_vm_config_drive @config.public_key_filename
