@@ -21,12 +21,20 @@ git pull --rebase origin master
 ### Create a CoreOs vm  
 
 ```bash
-ruby create_coreos_vm.rb \
+ruby vm_task.rb CoreOsVmCreationTask \
     --path ~/vms/ \
     --name vm1 \
     --img ~/vm-templates/coreos_production_qemu_image.img \
     --key ~/vm-templates/id_rsa.pub \
     --mac "54:00:00:00:00:01"
+```
+
+### Destroy a vm  
+
+```bash
+ruby vm_task.rb VmDeletionTask \
+    --path ~/vms/ \
+    --name vm1
 ```
 
 ## Dev  
