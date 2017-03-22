@@ -7,13 +7,7 @@ class VmTask
     end
 
     def run
-        with do |vm_manager|
-            run_with vm_manager
-        end
-    end
-
-    def with
-        yield VmManager.new(@config.vm_name, @config.storage_folder)
+        run_with VmManager.new(@config.vm_name, @config.storage_folder)
     end
 
     def run_with(vm_manager)
