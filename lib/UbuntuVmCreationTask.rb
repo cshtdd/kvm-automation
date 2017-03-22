@@ -1,11 +1,6 @@
-require_relative "TaskConfig"
-require_relative "VmManager"
+require_relative "VmTask"
 
-class UbuntuVmCreationTask
-    def initialize(config: TaskConfig.new)
-        @config = config
-    end
-
+class UbuntuVmCreationTask < VmTask
     def run
         with do |vm_manager|
             vm_manager.destroy_existing_vm
@@ -24,10 +19,5 @@ class UbuntuVmCreationTask
 
             vm_manager.autostart_vm
         end
-    end
-
-    def with
-        vm_manager = VmManager.new(@config.vm_name, @config.storage_folder)
-        yield vm_manager
     end
 end

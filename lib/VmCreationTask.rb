@@ -1,11 +1,6 @@
-require_relative "TaskConfig"
-require_relative "VmManager"
+require_relative "VmTask"
 
-class VmCreationTask
-    def initialize(config: TaskConfig.new)
-        @config = config
-    end
-
+class VmCreationTask < VmTask
     def run
         with do |vm_manager|
             vm_manager.destroy_existing_vm
@@ -33,10 +28,5 @@ class VmCreationTask
         with do |vm_manager|
             vm_manager.destroy_existing_vm
         end
-    end
-
-    def with
-        vm_manager = VmManager.new(@config.vm_name, @config.storage_folder)
-        yield vm_manager
     end
 end
