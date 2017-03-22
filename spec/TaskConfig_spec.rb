@@ -14,6 +14,7 @@ describe TaskConfig do
         expect(r.cpu_count).to eq("1")
         expect(r.os_variant).to eq("")
         expect(r.vnc_port).to eq("5900")
+        expect(r.vnc_ip).to eq("0.0.0.0")
     end
 
     it "parses the parameters" do
@@ -27,7 +28,8 @@ describe TaskConfig do
             "--ram", "2048",
             "--cpu", "4",
             "--os-variant", "ubuntu16.04",
-            "--vnc-port", "5901"])
+            "--vnc-port", "5901",
+            "--vnc-ip", "127.0.0.1"])
 
         expect(r.storage_folder).to eq("/var/vms/data")
         expect(r.public_key_filename).to eq("/etc/secrets/key.pub")
@@ -39,5 +41,6 @@ describe TaskConfig do
         expect(r.cpu_count).to eq("4")
         expect(r.os_variant).to eq("ubuntu16.04")
         expect(r.vnc_port).to eq("5901")
+        expect(r.vnc_ip).to eq("127.0.0.1")
     end
 end

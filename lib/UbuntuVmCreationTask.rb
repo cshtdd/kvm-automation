@@ -13,7 +13,8 @@ class UbuntuVmCreationTask < VmTask
             @config.bridge_adapter,
             @config.ram_mb,
             @config.cpu_count,
-            @config.vnc_port
+            @config.vnc_port,
+            @config.vnc_ip
         )
 
         vm_manager.autostart_vm

@@ -9,7 +9,8 @@ class TaskConfig
         :ram_mb,
         :cpu_count,
         :os_variant,
-        :vnc_port
+        :vnc_port,
+        :vnc_ip
     )
 
     def initialize(input=ARGV)
@@ -33,6 +34,7 @@ class TaskConfig
         @cpu_count = read_param("cpu", "1")
         @os_variant = read_param("os-variant", "")
         @vnc_port = read_param("vnc-port", "5900")
+        @vnc_ip = read_param("vnc-ip", "0.0.0.0")
     end
 
     def read_param(name, default_value = nil)
