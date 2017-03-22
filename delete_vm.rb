@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 
-require "./lib/CoreOsVmCreationTask"
+require "./lib/VmDeletionTask"
 
-CoreOsVmCreationTask.new().destroy_vm
+VmDeletionTask.new().run

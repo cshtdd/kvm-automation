@@ -21,10 +21,4 @@ class CoreOsVmCreationTask < VmTask
             vm_manager.generate_vm_config_drive @config.public_key_filename
         end
     end
-
-    def destroy_vm
-        with do |vm_manager|
-            vm_manager.destroy_existing_vm
-        end
-    end
 end
