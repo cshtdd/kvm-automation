@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 
-require "./lib/CoreOsVmCreationTask"
+require "./lib/CoreOsVmConfigTask"
 
-CoreOsVmCreationTask.new().create_config
+CoreOsVmConfigTask.new().run
