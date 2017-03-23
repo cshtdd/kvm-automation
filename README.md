@@ -10,6 +10,8 @@ Automate the creation of CoreOs and Ubuntu vms on KVM
 - virt-install  
 - virsh  
 
+Configure the virtualization host [following these steps](https://www.cyberciti.biz/faq/installing-kvm-on-ubuntu-16-04-lts-server/)  
+
 ## Usage  
 
 Get the latest version  
@@ -49,9 +51,3 @@ ruby vm_task.rb UbuntuVmCreationTask \
 ```bash
 ruby vm_task.rb VmDeletionTask --path ~/vms/ --name vm1
 ```
-
-## Dev  
-
-### Prerequisites  
-
-- rspec
