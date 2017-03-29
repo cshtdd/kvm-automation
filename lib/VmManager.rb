@@ -40,9 +40,9 @@ class VmManager
         mkdir_p hdd_container_folder
     end
 
-    def create_vm_hdd(base_image)
+    def create_vm_hdd(base_image, hdd_gb)
         create_vm_hdd_container_folder()
-        sh "qemu-img create -f qcow2 -b #{base_image} #{hdd_filename}"
+        sh "qemu-img create -f qcow2 -b #{base_image} #{hdd_filename} #{hdd_gb}G"
     end
 
     def destroy_existing_vm

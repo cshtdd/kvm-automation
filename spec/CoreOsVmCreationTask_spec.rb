@@ -32,10 +32,11 @@ describe CoreOsVmCreationTask, "run" do
 
     it "generates the hdd" do
         @config = instance_double("TaskConfig",
-            :base_image_filename => "seeded_base_image.img"
+            :base_image_filename => "seeded_base_image.img",
+            :hdd_gb => "15"
         ).as_null_object
 
-        expect(@vm_manager).to receive(:create_vm_hdd).with("seeded_base_image.img")
+        expect(@vm_manager).to receive(:create_vm_hdd).with("seeded_base_image.img", "15")
 
         run_task
     end
