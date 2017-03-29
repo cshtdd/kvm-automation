@@ -11,6 +11,7 @@ describe TaskConfig do
         expect(r.mac_address).to eq("54:36:E2:84:5A:C0")
         expect(r.bridge_adapter).to eq("br0")
         expect(r.ram_mb).to eq("1024")
+        expect(r.hdd_gb).to eq("10")
         expect(r.cpu_count).to eq("1")
         expect(r.os_variant).to eq("")
         expect(r.vnc_port).to eq("5900")
@@ -26,6 +27,7 @@ describe TaskConfig do
             "--mac", "00:00:00:01",
             "--br", "vbr1",
             "--ram", "2048",
+            "--hdd", "20",
             "--cpu", "4",
             "--os-variant", "ubuntu16.04",
             "--vnc-port", "5901",
@@ -38,6 +40,7 @@ describe TaskConfig do
         expect(r.mac_address).to eq("00:00:00:01")
         expect(r.bridge_adapter).to eq("vbr1")
         expect(r.ram_mb).to eq("2048")
+        expect(r.hdd_gb).to eq("20")
         expect(r.cpu_count).to eq("4")
         expect(r.os_variant).to eq("ubuntu16.04")
         expect(r.vnc_port).to eq("5901")

@@ -7,6 +7,7 @@ class TaskConfig
         :mac_address,
         :bridge_adapter,
         :ram_mb,
+        :hdd_gb,
         :cpu_count,
         :os_variant,
         :vnc_port,
@@ -31,6 +32,7 @@ class TaskConfig
         @mac_address = read_param("mac", "54:36:E2:84:5A:C0")
         @bridge_adapter = read_param("br", "br0")
         @ram_mb = read_param("ram", "1024")
+        @hdd_gb = read_param("hdd", "10")
         @cpu_count = read_param("cpu", "1")
         @os_variant = read_param("os-variant", "")
         @vnc_port = read_param("vnc-port", "5900")
