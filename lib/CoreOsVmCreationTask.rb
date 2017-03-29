@@ -10,6 +10,7 @@ class CoreOsVmCreationTask < VmTask
             @config.mac_address,
             @config.bridge_adapter,
             @config.ram_mb,
+            @config.hdd_gb,
             @config.cpu_count
         )
 

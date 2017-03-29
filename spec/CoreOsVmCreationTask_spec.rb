@@ -45,10 +45,11 @@ describe CoreOsVmCreationTask, "run" do
             :mac_address => "my mac",
             :bridge_adapter => "br-test",
             :ram_mb => "12345",
+            :hdd_gb => "15",
             :cpu_count => "10"
         ).as_null_object
 
-        expect(@vm_manager).to receive(:create_coreos_vm).with("my mac", "br-test", "12345", "10")
+        expect(@vm_manager).to receive(:create_coreos_vm).with("my mac", "br-test", "12345", "15", "10")
 
         run_task
     end
