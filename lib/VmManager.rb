@@ -60,6 +60,7 @@ class VmManager
             virt-install --connect qemu:///system \\
                 --import --name #{@vm_name} \\
                 --ram #{ram_mb} \\
+                --size #{hdd_gb}G \\
                 --vcpus #{cpu_count} \\
                 --os-type=linux \\
                 --os-variant=virtio26 \\
