@@ -29,7 +29,7 @@ ruby vm_task.rb CoreOsVmCreationTask \
     --path ~/vms/ \
     --name vm1 \
     --img ~/vm-templates/coreos_production_qemu_image.img \
-    --key ~/vm-templates/id_rsa.pub \
+    --key ~/vm-templates/id_rsa.pub
 ```
 
 ### Create an Ubuntu vm  
