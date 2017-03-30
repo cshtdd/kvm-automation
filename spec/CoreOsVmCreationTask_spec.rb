@@ -41,6 +41,31 @@ describe CoreOsVmCreationTask, "run" do
         run_task
     end
 
+    it "downloads the base image" do
+        @config = instance_double("TaskConfig",
+            :download_image => "true",
+            :base_image_filename => "unused_parameter.img",
+            :hdd_gb => "10"
+        ).as_null_object
+
+        expect(@vm_manager).to receive(:download_coreos_latest_stable_image)
+        expect(@vm_manager).to receive(:coreos_image_filename).and_return("downloaded_image.img")
+        expect(@vm_manager).to receive(:create_vm_hdd).with("downloaded_image.img", "10")
+
+        run_task
+    end
+
+    it "does not download the base image" do
+        @config = instance_double("TaskConfig",
+            :base_image_filename => "seeded_base_image.img",
+            :hdd_gb => "15"
+        ).as_null_object
+
+        expect(@vm_manager).not_to receive(:download_coreos_latest_stable_image)
+
+        run_task
+    end
+
     it "creates the vm" do
         @config = instance_double("TaskConfig",
             :mac_address => "my mac",
