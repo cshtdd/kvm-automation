@@ -8,7 +8,7 @@ describe TaskConfig do
         expect(r.public_key_filename).to eq(File.expand_path("~/.ssh/id_rsa.pub"))
         expect(r.base_image_filename).to eq("")
         expect(r.vm_name).to eq("vm01")
-        expect(r.mac_address).to eq("54:36:E2:84:5A:C0")
+        expect(r.mac_address).to eq("")
         expect(r.bridge_adapter).to eq("br0")
         expect(r.ram_mb).to eq("1024")
         expect(r.hdd_gb).to eq("10")

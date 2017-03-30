@@ -56,6 +56,13 @@ class VmManager
     end
 
     def create_coreos_vm(mac_address, bridge_adapter, ram_mb, cpu_count)
+        mac_address = mac_address || ""
+        mad_address_str = ""
+
+        if not mac_address.empty? then
+            mac_address_str = ",mac=#{mac_address}"
+        end
+
         sh %{
             virt-install --connect qemu:///system \\
                 --import --name #{@vm_name} \\
@@ -65,7 +72,7 @@ class VmManager
                 --os-variant=virtio26 \\
                 --disk path=#{hdd_filename},format=qcow2,bus=virtio \\
                 --filesystem #{config_folder},config-2,type=mount,mode=squash \\
-                --network=bridge=#{bridge_adapter},mac=#{mac_address} \\
+                --network=bridge=#{bridge_adapter}#{mac_address_str} \\
                 --vnc --noautoconsole
         }
     end

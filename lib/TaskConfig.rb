@@ -29,7 +29,7 @@ class TaskConfig
         @base_image_filename = _base_image_filename
 
         @vm_name = read_param("name", "vm01")
-        @mac_address = read_param("mac", "54:36:E2:84:5A:C0")
+        @mac_address = read_param("mac", "")
         @bridge_adapter = read_param("br", "br0")
         @ram_mb = read_param("ram", "1024")
         @hdd_gb = read_param("hdd", "10")
