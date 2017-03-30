@@ -61,8 +61,7 @@ class VmManager
 
     def create_coreos_vm(mac_address, bridge_adapter, ram_mb, cpu_count)
         mac_address = mac_address || ""
-        mad_address_str = ""
-
+        mac_address_str = ""
         if not mac_address.empty? then
             mac_address_str = ",mac=#{mac_address}"
         end
@@ -82,6 +81,12 @@ class VmManager
     end
 
     def create_ubuntu_vm(os_variant, base_image, mac_address, bridge_adapter, ram_mb, cpu_count, vnc_port, vnc_ip)
+        mac_address = mac_address || ""
+        mac_address_str = ""
+        if not mac_address.empty? then
+            mac_address_str = "--mac=\"#{mac_address}\" \\"
+        end
+
         sh %{
             virt-install --connect qemu:///system \\
                 --virt-type=kvm \\
@@ -93,7 +98,7 @@ class VmManager
                 --hvm \\
                 --cdrom=#{base_image} \\
                 --network=bridge=#{bridge_adapter},model=virtio \\
-                --mac="#{mac_address}" \\
+                #{mac_address_str}
                 --graphics vnc,listen=0.0.0.0,port=#{vnc_port} \\
                 --disk path=#{hdd_filename},size=10,bus=virtio,format=qcow2
         }

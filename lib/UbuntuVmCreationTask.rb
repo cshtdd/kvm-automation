@@ -18,5 +18,6 @@ class UbuntuVmCreationTask < VmTask
         )
 
         vm_manager.autostart_vm
+        vm_manager.read_mac_address
     end
 end
