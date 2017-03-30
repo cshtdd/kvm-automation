@@ -84,7 +84,7 @@ class VmManager
         mac_address = mac_address || ""
         mac_address_str = ""
         if not mac_address.empty? then
-            mac_address_str = "--mac=\"#{mac_address}\" \\"
+            mac_address_str = "--mac=\"#{mac_address}\""
         end
 
         sh %{
@@ -97,8 +97,7 @@ class VmManager
                 --virt-type=kvm \\
                 --hvm \\
                 --cdrom=#{base_image} \\
-                --network=bridge=#{bridge_adapter},model=virtio \\
-                #{mac_address_str}
+                --network=bridge=#{bridge_adapter},model=virtio #{mac_address_str}\\
                 --graphics vnc,listen=0.0.0.0,port=#{vnc_port} \\
                 --disk path=#{hdd_filename},size=10,bus=virtio,format=qcow2
         }
