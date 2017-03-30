@@ -7,6 +7,7 @@ describe TaskConfig do
         expect(r.storage_folder).to eq(File.expand_path("~/vms"))
         expect(r.public_key_filename).to eq(File.expand_path("~/.ssh/id_rsa.pub"))
         expect(r.base_image_filename).to eq("")
+        expect(r.download_image).to eq("false")
         expect(r.vm_name).to eq("vm01")
         expect(r.mac_address).to eq("")
         expect(r.bridge_adapter).to eq("br0")
@@ -23,6 +24,7 @@ describe TaskConfig do
             "--path", "/var/vms/data",
             "--key", "/etc/secrets/key.pub",
             "--img", "~/ubuntu.img",
+            "--dwnld", "true",
             "--name", "vm45",
             "--mac", "00:00:00:01",
             "--br", "vbr1",
@@ -36,6 +38,7 @@ describe TaskConfig do
         expect(r.storage_folder).to eq("/var/vms/data")
         expect(r.public_key_filename).to eq("/etc/secrets/key.pub")
         expect(r.base_image_filename).to eq(File.expand_path("~/ubuntu.img"))
+        expect(r.download_image).to eq("true")
         expect(r.vm_name).to eq("vm45")
         expect(r.mac_address).to eq("00:00:00:01")
         expect(r.bridge_adapter).to eq("vbr1")

@@ -3,6 +3,7 @@ class TaskConfig
         :storage_folder,
         :public_key_filename,
         :base_image_filename,
+        :download_image,
         :vm_name,
         :mac_address,
         :bridge_adapter,
@@ -28,6 +29,7 @@ class TaskConfig
         end
         @base_image_filename = _base_image_filename
 
+        @download_image = read_param("dwnld", "false")
         @vm_name = read_param("name", "vm01")
         @mac_address = read_param("mac", "")
         @bridge_adapter = read_param("br", "br0")
