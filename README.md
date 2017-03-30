@@ -50,3 +50,9 @@ ruby vm_task.rb UbuntuVmCreationTask \
 ```bash
 ruby vm_task.rb VmDeletionTask --path ~/vms/ --name vm1
 ```
+
+### Get the mac address of a vm  
+
+```bash
+ruby vm_task.rb ReadVmMacTask --name vm1
+```
