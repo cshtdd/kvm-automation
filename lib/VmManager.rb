@@ -119,8 +119,6 @@ class VmManager
         create_coreos_image_container_folder()
         Dir.chdir(coreos_image_container_folder) do
             sh "wget https://stable.release.core-os.net/amd64-usr/current/coreos_production_qemu_image.img.bz2"
-            sh "wget https://stable.release.core-os.net/amd64-usr/current/coreos_production_qemu_image.img.bz2.sig"
-            sh "gpg --verify coreos_production_qemu_image.img.bz2.sig"
             sh "bzip2 -d coreos_production_qemu_image.img.bz2"
         end
     end

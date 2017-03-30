@@ -11,7 +11,6 @@ Automate the creation of CoreOs and Ubuntu vms on KVM
 - virsh  
 - wget  
 - bzip2  
-- gpg  
 
 Configure the virtualization host [following these steps](https://www.cyberciti.biz/faq/installing-kvm-on-ubuntu-16-04-lts-server/)  
 
