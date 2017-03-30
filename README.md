@@ -30,7 +30,6 @@ ruby vm_task.rb CoreOsVmCreationTask \
     --name vm1 \
     --img ~/vm-templates/coreos_production_qemu_image.img \
     --key ~/vm-templates/id_rsa.pub \
-    --mac "54:00:00:00:00:01"
 ```
 
 ### Create an Ubuntu vm  
