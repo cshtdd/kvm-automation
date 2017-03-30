@@ -20,6 +20,14 @@ class VmManager
         File.dirname hdd_filename
     end
 
+    def coreos_image_container_folder
+        @storage_root
+    end
+
+    def coreos_image_filename
+        File.join(@storage_root, "coreos_production_qemu_image.img")
+    end
+
     def generate_vm_config_drive(public_key_filename)
         public_key = File.read public_key_filename
 
@@ -38,6 +46,10 @@ class VmManager
 
     def create_vm_hdd_container_folder
         mkdir_p hdd_container_folder
+    end
+
+    def create_coreos_image_container_folder
+        mkdir_p coreos_image_container_folder
     end
 
     def create_vm_hdd(base_image, hdd_gb)
@@ -101,5 +113,15 @@ class VmManager
                 --graphics vnc,listen=0.0.0.0,port=#{vnc_port} \\
                 --disk path=#{hdd_filename},size=#{hdd_gb},bus=virtio,format=qcow2
         }
+    end
+
+    def download_coreos_latest_stable_image
+        create_coreos_image_container_folder()
+        Dir.chdir(coreos_image_container_folder) do
+            sh "wget https://stable.release.core-os.net/amd64-usr/current/coreos_production_qemu_image.img.bz2"
+            sh "wget https://stable.release.core-os.net/amd64-usr/current/coreos_production_qemu_image.img.bz2.sig"
+            sh "gpg --verify coreos_production_qemu_image.img.bz2.sig"
+            sh "bzip2 -d coreos_production_qemu_image.img.bz2"
+        end
     end
 end

@@ -31,4 +31,10 @@ describe VmManager do
 
         expect(@m.hdd_filename).to eq(expected_hdd_filename)
     end
+
+    it "determines where to store the coreos image" do
+        expect_coreos_image_filename = File.join(@tmp_root.path, "#{@vm_name}/coreos_production_qemu_image.img")
+
+        expect(@m.coreos_image_filename).to eq(expect_coreos_image_filename)
+    end
 end
