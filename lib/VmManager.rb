@@ -55,6 +55,10 @@ class VmManager
         sh "virsh autostart #{@vm_name}"
     end
 
+    def read_mac_address
+        sh "virsh dumpxml #{@vm_name} | grep \"mac address\""
+    end
+
     def create_coreos_vm(mac_address, bridge_adapter, ram_mb, cpu_count)
         mac_address = mac_address || ""
         mad_address_str = ""
