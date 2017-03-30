@@ -18,7 +18,6 @@ class CoreOsVmCreationTask < VmTask
 
         vm_manager.autostart_vm
 
-        puts "The new machine mac address is: "
-        puts vm_manager.read_mac_address
+        vm_manager.read_mac_address
     end
 end
