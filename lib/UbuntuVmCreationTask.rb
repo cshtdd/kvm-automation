@@ -13,6 +13,7 @@ class UbuntuVmCreationTask < VmTask
             @config.bridge_adapter,
             @config.ram_mb,
             @config.cpu_count,
+            @config.hdd_gb,
             @config.vnc_port,
             @config.vnc_ip
         )

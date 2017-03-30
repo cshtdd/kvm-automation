@@ -36,12 +36,13 @@ describe UbuntuVmCreationTask, "run" do
             :bridge_adapter => "br-test",
             :ram_mb => "12345",
             :cpu_count => "10",
+            :hdd_gb => "15",
             :vnc_port => "6800",
             :vnc_ip => "127.0.0.1"
         ).as_null_object
 
         expect(@vm_manager).to receive(:create_ubuntu_vm).with(
-            "minix", "my_iso.iso", "my mac", "br-test", "12345", "10", "6800", "127.0.0.1"
+            "minix", "my_iso.iso", "my mac", "br-test", "12345", "10", "15", "6800", "127.0.0.1"
         )
 
         run_task

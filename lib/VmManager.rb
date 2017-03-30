@@ -80,7 +80,7 @@ class VmManager
         }
     end
 
-    def create_ubuntu_vm(os_variant, base_image, mac_address, bridge_adapter, ram_mb, cpu_count, vnc_port, vnc_ip)
+    def create_ubuntu_vm(os_variant, base_image, mac_address, bridge_adapter, ram_mb, cpu_count, hdd_gb, vnc_port, vnc_ip)
         mac_address = mac_address || ""
         mac_address_str = ""
         if not mac_address.empty? then
@@ -99,7 +99,7 @@ class VmManager
                 --cdrom=#{base_image} \\
                 --network=bridge=#{bridge_adapter},model=virtio #{mac_address_str}\\
                 --graphics vnc,listen=0.0.0.0,port=#{vnc_port} \\
-                --disk path=#{hdd_filename},size=10,bus=virtio,format=qcow2
+                --disk path=#{hdd_filename},size=#{hdd_gb},bus=virtio,format=qcow2
         }
     end
 end
