@@ -116,6 +116,12 @@ class VmManager
         }
     end
 
+    def extract_vm_backup(base_image)
+        sh %{
+            gzip -dc #{base_image} | dd of=#{hdd_filename}
+        }
+    end
+
     def restore_ubuntu_vm(os_variant, mac_address, bridge_adapter, ram_mb, cpu_count, vnc_port, vnc_ip)
         mac_address_str = build_mac_address_str mac_address
 
