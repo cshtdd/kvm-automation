@@ -110,7 +110,7 @@ class VmManager
                 --hvm \\
                 --cdrom=#{base_image} \\
                 --network=bridge=#{bridge_adapter},model=virtio #{mac_address_str}\\
-                --graphics vnc,listen=0.0.0.0,port=#{vnc_port} \\
+                --graphics vnc,listen=#{vnc_ip},port=#{vnc_port} \\
                 --disk path=#{hdd_filename},size=#{hdd_gb},bus=virtio,format=qcow2
         }
     end
