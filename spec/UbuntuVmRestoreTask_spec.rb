@@ -27,4 +27,14 @@ describe UbuntuVmRestoreTask, "run" do
 
         run_task
     end
+
+    it "extracts the compressed backup" do 
+        @config = instance_double("TaskConfig",
+            :base_image_filename => "backups/disk1.img.gz"
+        ).as_null_object
+
+        expect(@vm_manager).to receive(:extract_vm_backup).with("backups/disk1.img.gz")
+
+        run_task
+    end
 end
