@@ -116,6 +116,26 @@ class VmManager
         }
     end
 
+    def restore_ubuntu_vm(os_variant, mac_address, bridge_adapter, ram_mb, cpu_count, vnc_port, vnc_ip)
+        mac_address_str = build_mac_address_str mac_address
+
+        sh %{
+            virt-install --connect qemu:///system \\
+                --virt-type=kvm \\
+                --name #{@vm_name} \\
+                --ram #{ram_mb} \\
+                --vcpus=#{cpu_count} \\
+                --os-variant=#{os_variant} \\
+                --virt-type=kvm \\
+                --import \\
+                --noautoconsole \\
+                --hvm \\
+                --network=bridge=#{bridge_adapter},model=virtio #{mac_address_str}\\
+                --graphics vnc,listen=#{vnc_ip},port=#{vnc_port} \\
+                --disk path=#{hdd_filename},bus=virtio,format=qcow2
+        }
+    end
+
     def download_coreos_latest_stable_image
         create_coreos_image_container_folder()
         Dir.chdir(coreos_image_container_folder) do
