@@ -71,12 +71,17 @@ class VmManager
         sh "virsh dumpxml #{@vm_name} | grep \"mac address\""
     end
 
-    def create_coreos_vm(mac_address, bridge_adapter, ram_mb, cpu_count)
+    def build_mac_address_str(mac_address)
         mac_address = mac_address || ""
         mac_address_str = ""
         if not mac_address.empty? then
             mac_address_str = ",mac=#{mac_address}"
         end
+        mac_address_str
+    end
+
+    def create_coreos_vm(mac_address, bridge_adapter, ram_mb, cpu_count)
+        mac_address_str = build_mac_address_str mac_address
 
         sh %{
             virt-install --connect qemu:///system \\
@@ -93,11 +98,7 @@ class VmManager
     end
 
     def create_ubuntu_vm(os_variant, base_image, mac_address, bridge_adapter, ram_mb, cpu_count, hdd_gb, vnc_port, vnc_ip)
-        mac_address = mac_address || ""
-        mac_address_str = ""
-        if not mac_address.empty? then
-            mac_address_str = "--mac=\"#{mac_address}\""
-        end
+        mac_address_str = build_mac_address_str mac_address
 
         sh %{
             virt-install --connect qemu:///system \\
