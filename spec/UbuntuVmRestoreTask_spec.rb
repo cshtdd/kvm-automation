@@ -13,6 +13,7 @@ describe UbuntuVmRestoreTask, "run" do
     end
 
     it "removes existing vms with that name" do
+        allow(File).to receive(:file?).and_return true
         @config = instance_double("TaskConfig").as_null_object
 
         expect(@vm_manager).to receive(:destroy_existing_vm)
@@ -21,6 +22,7 @@ describe UbuntuVmRestoreTask, "run" do
     end
 
     it "creates the hdd container folder" do
+        allow(File).to receive(:file?).and_return true
         @config = instance_double("TaskConfig").as_null_object
 
         expect(@vm_manager).to receive(:create_vm_hdd_container_folder)
@@ -28,7 +30,17 @@ describe UbuntuVmRestoreTask, "run" do
         run_task
     end
 
+    it "raises an error if the backup file does not exists" do
+        allow(File).to receive(:file?).and_return false
+        @config = instance_double("TaskConfig",
+            :base_image_filename => "backups/disk1.img.gz"
+        ).as_null_object
+
+        expect { run_task }.to raise_error
+    end
+
     it "extracts the compressed backup" do
+        allow(File).to receive(:file?).and_return true
         @config = instance_double("TaskConfig",
             :base_image_filename => "backups/disk1.img.gz"
         ).as_null_object
@@ -39,6 +51,7 @@ describe UbuntuVmRestoreTask, "run" do
     end
 
     it "restores the vm" do
+        allow(File).to receive(:file?).and_return true
         @config = instance_double("TaskConfig",
             :os_variant => "minix",
             :mac_address => "my mac",
@@ -57,6 +70,7 @@ describe UbuntuVmRestoreTask, "run" do
     end
 
     it "autostarts the vm" do
+        allow(File).to receive(:file?).and_return true
         @config = instance_double("TaskConfig").as_null_object
 
         expect(@vm_manager).to receive(:autostart_vm)
@@ -65,6 +79,7 @@ describe UbuntuVmRestoreTask, "run" do
     end
 
     it "displays the vm mac address" do
+        allow(File).to receive(:file?).and_return true
         @config = instance_double("TaskConfig").as_null_object
 
         expect(@vm_manager).to receive(:read_mac_address)
