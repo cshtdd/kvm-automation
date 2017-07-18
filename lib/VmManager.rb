@@ -153,6 +153,12 @@ class VmManager
         }
     end
 
+    def read_backup_filename
+        backup_container = File.join(backup_folder, "#{@vm_name}")
+
+        sh "ls #{backup_folder}/#{@vm_name}_*.img.gz"
+    end
+
     def restore_ubuntu_vm(os_variant, mac_address, bridge_adapter, ram_mb, cpu_count, vnc_port, vnc_ip)
         mac_address_str = build_mac_address_str mac_address
 

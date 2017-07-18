@@ -7,5 +7,7 @@ class VmBackupTask < VmTask
         vm_manager.cleanup_existing_vm_backup
         vm_manager.create_vm_backup_folder
         vm_manager.backup_vm
+
+        vm_manager.read_backup_filename
     end
 end
