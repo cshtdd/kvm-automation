@@ -75,6 +75,10 @@ class VmManager
         sh "virsh dumpxml #{@vm_name} | grep \"mac address\""
     end
 
+    def vm_already_exists
+        sh "virsh list --name | grep \"#{@vm_name}\""
+    end
+
     def build_mac_address_str(mac_address)
         mac_address = mac_address || ""
         mac_address_str = ""

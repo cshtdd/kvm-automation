@@ -12,6 +12,13 @@ describe VmBackupTask, "run" do
         VmBackupTask.new(config: @config).run
     end
 
+    it "fails if the vm does not exist" do
+        allow(@vm_manager).to receive(:vm_already_exists).and_return false
+        @config = instance_double("TaskConfig").as_null_object
+
+        expect { run_task }.to raise_error
+    end
+
     it "deletes previously existing backups for that vm" do
         @config = instance_double("TaskConfig").as_null_object
 
