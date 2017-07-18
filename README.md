@@ -63,6 +63,12 @@ ruby vm_task.rb UbuntuVmRestoreTask \
     --vnc-port "5902"
 ```
 
+### Backup a vm  
+
+```bash
+ruby vm_task.rb VmBackupTask --path ~/vm-backups/ --name vm1
+```
+
 ### Destroy a vm  
 
 ```bash
