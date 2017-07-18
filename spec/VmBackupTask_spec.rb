@@ -12,6 +12,14 @@ describe VmBackupTask, "run" do
         VmBackupTask.new(config: @config).run
     end
 
+    it "deletes previously existing backups for that vm" do
+        @config = instance_double("TaskConfig").as_null_object
+
+        expect(@vm_manager).to receive(:cleanup_existing_vm_backup)
+
+        run_task
+    end
+
     it "creates the backup container folder" do
         @config = instance_double("TaskConfig").as_null_object
 
