@@ -12,6 +12,10 @@ class VmManager
         @storage_root
     end
 
+    def backup_folder
+        config_folder
+    end
+
     def hdd_filename
         File.join(@storage_root, "#{@vm_name}.qcow2")
     end
@@ -113,6 +117,23 @@ class VmManager
                 --network=bridge=#{bridge_adapter},model=virtio #{mac_address_str}\\
                 --graphics vnc,listen=#{vnc_ip},port=#{vnc_port} \\
                 --disk path=#{hdd_filename},size=#{hdd_gb},bus=virtio,format=qcow2
+        }
+    end
+
+    def cleanup_existing_vm_backup
+        sh "rm -Rf #{backup_folder}"
+    end
+
+    def create_vm_backup_folder
+        mkdir_p backup_folder
+    end
+
+    def backup_vm
+        sh %{
+            perl ./resources/virt-backup.pl \\
+                --vm=#{@vm_name} \\
+                --backupdir=#{backup_folder} \\
+                --compress
         }
     end
 
