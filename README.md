@@ -46,6 +46,17 @@ ruby vm_task.rb UbuntuVmCreationTask \
 # From your host vnc to `vmhost.local:5901` and finish the installation  
 ```
 
+### Restore an Ubuntu vm  
+
+```bash
+ruby vm_task.rb UbuntuVmRestoreTask \
+    --path ~/vms/ \
+    --name vm3 \
+    --os-variant "ubuntu16.04" \
+    --img ~/vm-backups/vm1/vm1_vda.img.gz \
+    --vnc-port "5902"
+```
+
 ### Destroy a vm  
 
 ```bash
