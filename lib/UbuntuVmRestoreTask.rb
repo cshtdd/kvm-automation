@@ -6,7 +6,7 @@ class UbuntuVmRestoreTask < VmTask
 
         vm_manager.create_vm_hdd_container_folder
 
-        raise "Backup file not found" unless File.file? @config.base_image_filename
+        raise "Backup file '#{@config.base_image_filename}' not found" unless File.file? @config.base_image_filename
         vm_manager.extract_vm_backup @config.base_image_filename
 
         vm_manager.restore_ubuntu_vm(
