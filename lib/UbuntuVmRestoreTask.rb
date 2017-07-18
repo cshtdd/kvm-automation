@@ -17,5 +17,8 @@ class UbuntuVmRestoreTask < VmTask
             @config.vnc_port,
             @config.vnc_ip
         )
+
+        vm_manager.autostart_vm
+        vm_manager.read_mac_address
     end
 end

@@ -55,4 +55,20 @@ describe UbuntuVmRestoreTask, "run" do
 
         run_task
     end
+
+    it "autostarts the vm" do
+        @config = instance_double("TaskConfig").as_null_object
+
+        expect(@vm_manager).to receive(:autostart_vm)
+
+        run_task
+    end
+
+    it "displays the vm mac address" do
+        @config = instance_double("TaskConfig").as_null_object
+
+        expect(@vm_manager).to receive(:read_mac_address)
+
+        run_task
+    end
 end
