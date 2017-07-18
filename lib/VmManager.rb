@@ -128,9 +128,16 @@ class VmManager
         mkdir_p backup_folder
     end
 
+    def backup_utility_full_path
+        current_file = File.dirname(__FILE__)
+        lib_dir = File.dirname current_file
+        backup_script_full_path = File.join(lib_dir, "resources/virt-backup.pl")
+        backup_script_full_path
+    end
+
     def backup_vm
         sh %{
-            perl ./resources/virt-backup.pl \\
+            perl #{backup_utility_full_path} \\
                 --vm=#{@vm_name} \\
                 --backupdir=#{backup_folder} \\
                 --compress
