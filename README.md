@@ -13,6 +13,9 @@ Automate the creation of CoreOs and Ubuntu vms on KVM
 - bzip2  
 - dd  
 - gzip  
+- perl  
+- libxml-simple-perl  
+- libsys-virt-perl  
 
 
 Configure the virtualization host [following these steps](https://www.cyberciti.biz/faq/installing-kvm-on-ubuntu-16-04-lts-server/)  
