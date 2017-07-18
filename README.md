@@ -66,7 +66,7 @@ ruby vm_task.rb UbuntuVmRestoreTask \
 ### Backup a vm  
 
 ```bash
-ruby vm_task.rb VmBackupTask --path ~/vm-backups/ --name vm1
+sudo ruby vm_task.rb VmBackupTask --path ~/vm-backups/ --name vm1
 ```
 
 ### Destroy a vm  
