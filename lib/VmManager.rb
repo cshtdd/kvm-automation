@@ -129,8 +129,7 @@ class VmManager
     end
 
     def backup_utility_full_path
-        current_file = File.dirname(__FILE__)
-        lib_dir = File.dirname current_file
+        lib_dir = File.dirname(__FILE__)
         backup_script_full_path = File.join(lib_dir, "resources/virt-backup.pl")
         backup_script_full_path
     end
