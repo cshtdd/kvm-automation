@@ -131,6 +131,7 @@ class VmManager
                 --vcpus=#{cpu_count} \\
                 --os-variant=#{os_variant} \\
                 --virt-type=kvm \\
+                --noautoconsole \\
                 --hvm \\
                 --cdrom=#{base_image} \\
                 --network=bridge=#{bridge_adapter},model=virtio #{mac_address_str}\\
