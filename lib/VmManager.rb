@@ -140,7 +140,7 @@ class VmManager
         }
     end
 
-    def cleanup_existing_vm_backup
+    def delete_all_existing_vm_backups
         sh "rm -Rf #{backup_folder}"
     end
 

@@ -22,7 +22,7 @@ describe VmBackupTask, "run" do
     it "deletes previously existing backups for that vm" do
         @config = instance_double("TaskConfig").as_null_object
 
-        expect(@vm_manager).to receive(:cleanup_existing_vm_backup)
+        expect(@vm_manager).to receive(:delete_all_existing_vm_backups)
 
         run_task
     end
