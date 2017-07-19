@@ -20,7 +20,7 @@ class UbuntuVmRestoreTask < VmTask
             @config.vnc_ip
         )
 
-        vm_manager.autostart_vm
+        vm_manager.autostart_vm unless @config.autostart == "false"
         vm_manager.read_vnc_information
         vm_manager.read_mac_address
     end

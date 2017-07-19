@@ -78,6 +78,17 @@ describe UbuntuVmRestoreTask, "run" do
         run_task
     end
 
+    it "does not autostart the vm if disabled in the config" do
+        allow(File).to receive(:file?).and_return true
+        @config = instance_double("TaskConfig",
+            :autostart => "false"
+        ).as_null_object
+
+        expect(@vm_manager).not_to receive(:autostart_vm)
+
+        run_task
+    end
+
     it "displays the vm mac address" do
         allow(File).to receive(:file?).and_return true
         @config = instance_double("TaskConfig").as_null_object
