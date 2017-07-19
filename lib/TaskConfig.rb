@@ -4,6 +4,7 @@ class TaskConfig
         :public_key_filename,
         :base_image_filename,
         :download_image,
+        :autostart,
         :vm_name,
         :mac_address,
         :bridge_adapter,
@@ -30,6 +31,7 @@ class TaskConfig
         @base_image_filename = _base_image_filename
 
         @download_image = read_param("dwnld", "false")
+        @autostart = read_param("autostart", "true")
         @vm_name = read_param("name", "vm01")
         @mac_address = read_param("mac", "")
         @bridge_adapter = read_param("br", "br0")
