@@ -75,6 +75,10 @@ class VmManager
         sh "virsh dumpxml #{@vm_name} | grep \"mac address\""
     end
 
+    def read_vnc_information
+        sh "virsh dumpxml #{@vm_name} | grep \"vnc\""
+    end
+
     def vm_already_exists
         sh "virsh list --name | grep \"#{@vm_name}\""
     end
