@@ -43,4 +43,10 @@ describe VmManager do
 
         expect(@m.backup_folder).to eq(expected_backup_folder_path)
     end
+
+    it "determines the snapshot folder" do
+        expected_snapshot_folder_path = File.join(@tmp_root.path, "#{@vm_name}/#{@vm_name}/")
+
+        expect(@m.snapshot_folder).to eq(expected_snapshot_folder_path)
+    end
 end

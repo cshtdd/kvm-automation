@@ -16,6 +16,10 @@ class VmManager
         File.join(@storage_root, "#{@vm_name}/")
     end
 
+    def snapshot_folder
+        backup_folder
+    end
+
     def hdd_filename
         File.join(@storage_root, "#{@vm_name}.qcow2")
     end
@@ -145,7 +149,7 @@ class VmManager
     end
 
     def create_vm_snapshot_folder
-        mkdir_p backup_folder
+        mkdir_p snapshot_folder
     end
 
     def backup_utility_full_path
@@ -158,7 +162,7 @@ class VmManager
         sh %{
             perl #{backup_utility_full_path} \\
                 --vm=#{@vm_name} \\
-                --backupdir=#{backup_folder} \\
+                --backupdir=#{snapshot_folder} \\
                 --compress
         }
     end
@@ -170,7 +174,7 @@ class VmManager
     end
 
     def read_backup_filename
-        backup_container = File.join(backup_folder, "#{@vm_name}")
+        backup_container = File.join(snapshot_folder, "#{@vm_name}")
         puts Dir["#{backup_container}/#{@vm_name}_*.img.gz"]
     end
 
