@@ -48,7 +48,8 @@ ruby vm_task.rb UbuntuVmCreationTask \
     --name vm2 \
     --os-variant "ubuntu16.04" \
     --img ~/vm-templates/ubuntu-16.04.2-server-amd64.iso
-# From your host vnc to `vmhost.local:5901` and finish the installation  
+# At this point the command will display the vm's mac address and vnc port  
+# From your host vnc to `vmhost.local:<VNC_PORT>` and finish the installation  
 ```
 
 ### Restore an Ubuntu vm  
