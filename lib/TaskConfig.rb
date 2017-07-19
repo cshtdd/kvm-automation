@@ -37,7 +37,7 @@ class TaskConfig
         @hdd_gb = read_param("hdd", "10")
         @cpu_count = read_param("cpu", "1")
         @os_variant = read_param("os-variant", "")
-        @vnc_port = read_param("vnc-port", "5900")
+        @vnc_port = read_param("vnc-port", "")
         @vnc_ip = read_param("vnc-ip", "0.0.0.0")
     end
 

@@ -92,6 +92,16 @@ class VmManager
         mac_address_str
     end
 
+    def build_vnc_port_str(vnc_port)
+        vnc_port = vnc_port || ""
+        vnc_port_str = ""
+
+        if not vnc_port.empty? then
+            vnc_port_str = ",port=#{vnc_port}"
+        end
+        vnc_port_str
+    end
+
     def create_coreos_vm(mac_address, bridge_adapter, ram_mb, cpu_count)
         mac_address_str = build_mac_address_str mac_address
 
@@ -111,6 +121,7 @@ class VmManager
 
     def create_ubuntu_vm(os_variant, base_image, mac_address, bridge_adapter, ram_mb, cpu_count, hdd_gb, vnc_port, vnc_ip)
         mac_address_str = build_mac_address_str mac_address
+        vnc_port_str = build_vnc_port_str vnc_port
 
         sh %{
             virt-install --connect qemu:///system \\
@@ -123,7 +134,7 @@ class VmManager
                 --hvm \\
                 --cdrom=#{base_image} \\
                 --network=bridge=#{bridge_adapter},model=virtio #{mac_address_str}\\
-                --graphics vnc,listen=#{vnc_ip},port=#{vnc_port} \\
+                --graphics vnc,listen=#{vnc_ip}#{vnc_port_str} \\
                 --disk path=#{hdd_filename},size=#{hdd_gb},bus=virtio,format=qcow2
         }
     end
@@ -164,6 +175,7 @@ class VmManager
 
     def restore_ubuntu_vm(os_variant, mac_address, bridge_adapter, ram_mb, cpu_count, vnc_port, vnc_ip)
         mac_address_str = build_mac_address_str mac_address
+        vnc_port_str = build_vnc_port_str vnc_port
 
         sh %{
             virt-install --connect qemu:///system \\
@@ -177,7 +189,7 @@ class VmManager
                 --noautoconsole \\
                 --hvm \\
                 --network=bridge=#{bridge_adapter},model=virtio #{mac_address_str}\\
-                --graphics vnc,listen=#{vnc_ip},port=#{vnc_port} \\
+                --graphics vnc,listen=#{vnc_ip}#{vnc_port_str} \\
                 --disk path=#{hdd_filename},bus=virtio,format=qcow2
         }
     end

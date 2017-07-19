@@ -15,7 +15,7 @@ describe TaskConfig do
         expect(r.hdd_gb).to eq("10")
         expect(r.cpu_count).to eq("1")
         expect(r.os_variant).to eq("")
-        expect(r.vnc_port).to eq("5900")
+        expect(r.vnc_port).to eq("")
         expect(r.vnc_ip).to eq("0.0.0.0")
     end
 

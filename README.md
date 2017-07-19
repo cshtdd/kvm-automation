@@ -47,8 +47,7 @@ ruby vm_task.rb UbuntuVmCreationTask \
     --path ~/vms/ \
     --name vm2 \
     --os-variant "ubuntu16.04" \
-    --img ~/vm-templates/ubuntu-16.04.2-server-amd64.iso \
-    --vnc-port "5901"
+    --img ~/vm-templates/ubuntu-16.04.2-server-amd64.iso
 # From your host vnc to `vmhost.local:5901` and finish the installation  
 ```
 
@@ -59,8 +58,7 @@ ruby vm_task.rb UbuntuVmRestoreTask \
     --path ~/vms/ \
     --name vm3 \
     --os-variant "ubuntu16.04" \
-    --img ~/vm-backups/vm1/vm1_vda.img.gz \
-    --vnc-port "5902"
+    --img ~/vm-backups/vm1/vm1_vda.img.gz
 ```
 
 ### Backup a vm  

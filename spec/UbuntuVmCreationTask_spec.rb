@@ -63,4 +63,12 @@ describe UbuntuVmCreationTask, "run" do
 
         run_task
     end
+
+    it "displays the vnc port" do
+        @config = instance_double("TaskConfig").as_null_object
+
+        expect(@vm_manager).to receive(:read_vnc_information)
+
+        run_task
+    end
 end
