@@ -30,7 +30,7 @@ describe VmBackupTask, "run" do
     it "creates the backup container folder" do
         @config = instance_double("TaskConfig").as_null_object
 
-        expect(@vm_manager).to receive(:create_vm_backup_folder)
+        expect(@vm_manager).to receive(:create_vm_snapshot_folder)
 
         run_task
     end

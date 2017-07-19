@@ -144,7 +144,7 @@ class VmManager
         sh "rm -Rf #{backup_folder}"
     end
 
-    def create_vm_backup_folder
+    def create_vm_snapshot_folder
         mkdir_p backup_folder
     end
 
