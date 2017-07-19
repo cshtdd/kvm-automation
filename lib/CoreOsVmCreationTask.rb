@@ -20,7 +20,7 @@ class CoreOsVmCreationTask < VmTask
             @config.cpu_count
         )
 
-        vm_manager.autostart_vm
+        vm_manager.autostart_vm unless @config.autostart == "false"
 
         vm_manager.read_mac_address
     end
