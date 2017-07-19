@@ -68,6 +68,12 @@ ruby vm_task.rb UbuntuVmRestoreTask \
 sudo ruby vm_task.rb VmBackupTask --path ~/vm-backups/ --name vm1
 ```
 
+### Get the path for the latest vm backup
+
+```bash
+ruby vm_task.rb ReadVmBackupPathTask --path ~/vm-backups/ --name vm1
+```
+
 ### Destroy a vm  
 
 ```bash
