@@ -37,4 +37,10 @@ describe VmManager do
 
         expect(@m.coreos_image_filename).to eq(expect_coreos_image_filename)
     end
+
+    it "determines where to store the backup" do
+        expected_backup_folder_path = File.join(@tmp_root.path, "#{@vm_name}/")
+
+        expect(@m.backup_folder).to eq(expected_backup_folder_path)
+    end
 end
