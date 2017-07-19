@@ -13,7 +13,7 @@ class VmManager
     end
 
     def backup_folder
-        config_folder
+        File.join(config_folder, "#{@vm_name}/")
     end
 
     def hdd_filename
