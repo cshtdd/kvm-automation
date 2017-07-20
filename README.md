@@ -59,7 +59,7 @@ ruby vm_task.rb UbuntuVmRestoreTask \
     --path ~/vms/ \
     --name vm3 \
     --os-variant "ubuntu16.04" \
-    --img ~/vm-backups/vm1/vm1_vda.img.gz
+    --img ~/vm-backups/vm1/20170701000000/vm1/vm1_vda.img.gz
 ```
 
 ### Backup a vm  
