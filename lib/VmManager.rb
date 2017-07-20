@@ -176,7 +176,11 @@ class VmManager
     end
 
     def read_latest_backup_filename
-        latest_snapshot_folder = Dir["#{backup_folder}*/"].sort.last
+        existing_snapshots = Dir["#{backup_folder}*/"] || []
+
+        raise "No snapshots found for #{@vm_name}" if existing_snapshots.empty?
+
+        latest_snapshot_folder = existing_snapshots.sort.last
         backup_container = File.join(latest_snapshot_folder, @vm_name)
 
         Dir["#{backup_container}/#{@vm_name}_*.img.gz"].first
