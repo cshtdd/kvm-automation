@@ -36,7 +36,7 @@ describe UbuntuVmRestoreTask, "run" do
             :base_image_filename => "backups/disk1.img.gz"
         ).as_null_object
 
-        expect { run_task }.to raise_error
+        expect { run_task }.to raise_error RuntimeError
     end
 
     it "extracts the compressed backup" do

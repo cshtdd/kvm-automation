@@ -16,7 +16,7 @@ describe VmBackupTask, "run" do
         allow(@vm_manager).to receive(:vm_already_exists).and_return false
         @config = instance_double("TaskConfig").as_null_object
 
-        expect { run_task }.to raise_error
+        expect { run_task }.to raise_error RuntimeError
     end
 
     it "creates the backup container folder" do

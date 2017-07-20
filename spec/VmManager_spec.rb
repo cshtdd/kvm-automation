@@ -64,7 +64,7 @@ describe VmManager do
     end
 
     it "raises an error when there are no snapshots" do
-        expect { @m.read_latest_backup_filename }.to raise_error
+        expect { @m.read_latest_backup_filename }.to raise_error RuntimeError
     end
 
     private def mock_snapshot(snapshot_name)
