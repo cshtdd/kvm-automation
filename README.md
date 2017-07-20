@@ -83,7 +83,7 @@ ruby vm_task.rb VmDeletionTask --path ~/vms/ --name vm1
 ### Delete all vm backups  
 
 ```bash
-ruby vm_task.rb DeleteAllVmBackupsTask --path ~/vms/ --name vm1
+sudo ruby vm_task.rb DeleteAllVmBackupsTask --path ~/vm-backups/ --name vm1
 ```
 
 ### Get the mac address of a vm  
