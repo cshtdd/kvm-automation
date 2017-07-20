@@ -175,7 +175,7 @@ class VmManager
         }
     end
 
-    def read_backup_filename
+    def read_latest_backup_filename
         backup_container = File.join(snapshot_folder, "#{@vm_name}")
         puts Dir["#{backup_container}/#{@vm_name}_*.img.gz"]
     end
