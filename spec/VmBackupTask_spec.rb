@@ -19,14 +19,6 @@ describe VmBackupTask, "run" do
         expect { run_task }.to raise_error
     end
 
-    it "deletes previously existing backups for that vm" do
-        @config = instance_double("TaskConfig").as_null_object
-
-        expect(@vm_manager).to receive(:delete_all_existing_vm_backups)
-
-        run_task
-    end
-
     it "creates the backup container folder" do
         @config = instance_double("TaskConfig").as_null_object
 
