@@ -1,5 +1,6 @@
 require "TempFolder"
 require "VmManager"
+require "ShellUtils"
 
 describe VmManager do
     before do
@@ -51,5 +52,28 @@ describe VmManager do
 
         expect(@m.snapshot_folder).to eq expected_snapshot_folder_path
     end
+
+    it "determines the path of the most recent snapshot" do
+        seeded_images = [
+            mock_snapshot("20011201000000"),
+            mock_snapshot("20031201000000"),
+            mock_snapshot("20021201000000")
+        ]
+
+        expect(@m.read_latest_backup_filename).to eq seeded_images[1]
+    end
+
+    it "raises an error when there are no snapshots" do
+        expect { @m.read_latest_backup_filename }.to raise_error
+    end
+
+    private def mock_snapshot(snapshot_name)
+        snapshot_folder = File.join(@m.backup_folder, "#{snapshot_name}/#{@vm_name}")
+        mkdir_p snapshot_folder
+
+        img_file = File.join(snapshot_folder, "#{@vm_name}_hdd1.img.gz")
+        `touch #{img_file}`
+
+        img_file
     end
 end

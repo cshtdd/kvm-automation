@@ -176,8 +176,10 @@ class VmManager
     end
 
     def read_latest_backup_filename
-        backup_container = File.join(snapshot_folder, "#{@vm_name}")
-        puts Dir["#{backup_container}/#{@vm_name}_*.img.gz"]
+        latest_snapshot_folder = Dir["#{backup_folder}*/"].sort.last
+        backup_container = File.join(latest_snapshot_folder, @vm_name)
+
+        Dir["#{backup_container}/#{@vm_name}_*.img.gz"].first
     end
 
     def restore_ubuntu_vm(os_variant, mac_address, bridge_adapter, ram_mb, cpu_count, vnc_port, vnc_ip)

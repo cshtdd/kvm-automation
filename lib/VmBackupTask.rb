@@ -7,6 +7,6 @@ class VmBackupTask < VmTask
         vm_manager.create_vm_snapshot_folder
         vm_manager.backup_vm
 
-        vm_manager.read_latest_backup_filename
+        puts vm_manager.read_latest_backup_filename
     end
 end
