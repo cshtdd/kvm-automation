@@ -6,6 +6,7 @@ class VmManager
     def initialize(vm_name, storage_root)
         @vm_name = vm_name
         @storage_root = File.join(storage_root, "#{@vm_name}/")
+        @creation_time = Time.now
     end
 
     def config_folder
@@ -13,11 +14,12 @@ class VmManager
     end
 
     def backup_folder
-        File.join(@storage_root, "#{@vm_name}/")
+        @storage_root
     end
 
     def snapshot_folder
-        backup_folder
+        folder_name = @creation_time.strftime("%Y%m%d%H%M%S")
+        File.join(backup_folder, "#{folder_name}/")
     end
 
     def hdd_filename

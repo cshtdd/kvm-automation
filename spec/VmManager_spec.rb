@@ -5,6 +5,8 @@ describe VmManager do
     before do
         @tmp_root = TempFolder.new
         @vm_name = "tmp_vm_#{rand(100000)}"
+
+        allow(Time).to receive(:now).and_return(Time.mktime(1990,12,1, 5,32,23))
         @m = VmManager.new(@vm_name, @tmp_root.path)
     end
 
@@ -39,13 +41,13 @@ describe VmManager do
     end
 
     it "determines where to store the backup" do
-        expected_backup_folder_path = File.join(@tmp_root.path, "#{@vm_name}/#{@vm_name}/")
+        expected_backup_folder_path = File.join(@tmp_root.path, "#{@vm_name}/")
 
         expect(@m.backup_folder).to eq(expected_backup_folder_path)
     end
 
     it "determines the snapshot folder" do
-        expected_snapshot_folder_path = File.join(@tmp_root.path, "#{@vm_name}/#{@vm_name}/")
+        expected_snapshot_folder_path = File.join(@tmp_root.path, "#{@vm_name}/19901201053223/")
 
         expect(@m.snapshot_folder).to eq(expected_snapshot_folder_path)
     end
