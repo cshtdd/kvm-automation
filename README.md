@@ -26,7 +26,7 @@ Get the latest version
 
 ```bash
 git clone --depth 1 https://github.com/camilin87/kvm-automation.git
-cd coreos-kvm-automation
+cd kvm-automation
 git pull --rebase origin master
 ```
 
