@@ -105,6 +105,10 @@ class VmManager
         sh "virsh list --name | grep \"#{@vm_name}\""
     end
 
+    def vm_is_running
+        `virsh list --state-running`.include? @vm_name
+    end
+
     def build_mac_address_str(mac_address)
         mac_address = mac_address || ""
         mac_address_str = ""
