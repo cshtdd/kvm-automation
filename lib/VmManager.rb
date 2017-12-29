@@ -1,3 +1,4 @@
+require "pry"
 require "fileutils"
 require_relative "ShellUtils"
 require_relative "ConfigBuilder"
@@ -24,6 +25,11 @@ class VmManager
 
     def hdd_filename
         File.join(@storage_root, "#{@vm_name}.qcow2")
+    end
+
+    def shrink_hdd
+        tmp_hdd_copy = "#{hdd_filename}.bck"
+        FileUtils.copy_file(hdd_filename, tmp_hdd_copy)
     end
 
     def hdd_container_folder

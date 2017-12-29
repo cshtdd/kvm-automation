@@ -35,6 +35,12 @@ describe VmManager do
         expect(@m.hdd_filename).to eq expected_hdd_filename
     end
 
+    it "shrinks the hdd" do
+        expect(FileUtils).to receive(:copy_file).with(@m.hdd_filename, "#{@m.hdd_filename}.bck").once
+
+        @m.shrink_hdd
+    end
+
     it "determines where to store the coreos image" do
         expect_coreos_image_filename = File.join(@tmp_root.path, "#{@vm_name}/coreos_production_qemu_image.img")
 
