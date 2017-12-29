@@ -27,10 +27,19 @@ class VmManager
         File.join(@storage_root, "#{@vm_name}.qcow2")
     end
 
-    def shrink_hdd
-        tmp_hdd_copy = "#{hdd_filename}.bck"
+    def hdd_backup_filename
+        "#{hdd_filename}.bck"
+    end
+
+    def promote_hdd_backup
         FileUtils.rm(hdd_filename)
-        FileUtils.mv(tmp_hdd_copy, hdd_filename)
+        FileUtils.mv(hdd_backup_filename, hdd_filename)
+    end
+
+    def shrink_hdd
+        sh %{
+            qemu-img convert -O qcow2 #{hdd_filename} #{hdd_backup_filename}
+        }
     end
 
     def hdd_container_folder

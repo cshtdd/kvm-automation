@@ -35,11 +35,17 @@ describe VmManager do
         expect(@m.hdd_filename).to eq expected_hdd_filename
     end
 
-    it "shrinks the hdd" do
+    it "determines where to store an hdd backup" do
+        expected_hdd_backup_filename = "#{@m.hdd_filename}.bck"
+
+        expect(@m.hdd_backup_filename).to eq expected_hdd_backup_filename
+    end
+
+    it "promotes the hdd backup" do
         expect(FileUtils).to receive(:mv).with("#{@m.hdd_filename}.bck", @m.hdd_filename).once
         expect(FileUtils).to receive(:rm).with(@m.hdd_filename).once
 
-        @m.shrink_hdd
+        @m.promote_hdd_backup
     end
 
     it "determines where to store the coreos image" do
