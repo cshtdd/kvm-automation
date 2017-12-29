@@ -36,7 +36,8 @@ describe VmManager do
     end
 
     it "shrinks the hdd" do
-        expect(FileUtils).to receive(:copy_file).with(@m.hdd_filename, "#{@m.hdd_filename}.bck").once
+        expect(FileUtils).to receive(:mv).with("#{@m.hdd_filename}.bck", @m.hdd_filename).once
+        expect(FileUtils).to receive(:rm).with(@m.hdd_filename).once
 
         @m.shrink_hdd
     end

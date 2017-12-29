@@ -29,7 +29,8 @@ class VmManager
 
     def shrink_hdd
         tmp_hdd_copy = "#{hdd_filename}.bck"
-        FileUtils.copy_file(hdd_filename, tmp_hdd_copy)
+        FileUtils.rm(hdd_filename)
+        FileUtils.mv(tmp_hdd_copy, hdd_filename)
     end
 
     def hdd_container_folder
