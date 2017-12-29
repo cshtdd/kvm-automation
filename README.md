@@ -62,6 +62,14 @@ ruby vm_task.rb UbuntuVmRestoreTask \
     --img ~/vm-backups/vm1/20170701000000/vm1/vm1_vda.img.gz
 ```
 
+### Shrink a vm HDD  
+
+```bash
+sudo ruby vm_task.rb HddShrinkTask \
+    --path ~/vms/ \
+    --name vm3
+```
+
 ### Backup a vm  
 
 ```bash
